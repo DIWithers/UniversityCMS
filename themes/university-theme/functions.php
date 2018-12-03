@@ -15,8 +15,18 @@
         register_nav_menu('footerLocationTwo', 'Footer Location Two');
     }
 
+    function add_custom_post_types() {
+        register_post_type('event', array(
+            'public' => true,
+            'labels' => array(
+                'name' => 'Events'
+            ),
+            'menu_icon' => 'dashicons-calendar'
+        ));
+    }
+
     add_action('wp_enqueue_scripts','load_scripts_and_styles');
     add_action('after_setup_theme','manage_display_features');
-    add_action('');
+    add_action('init', 'add_custom_post_types');
 
 ?>
