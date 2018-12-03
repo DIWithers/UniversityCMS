@@ -40,7 +40,8 @@
                         <?php 
                             wp_list_pages(array(
                                 'title_li' => NULL,
-                                'child_of' => $parentID ? $parentID : get_the_ID()
+                                'child_of' => $parentID ? $parentID : get_the_ID(),
+                                'sort_column' => 'menu_order'
                             ));
                         ?>
                     </ul>
