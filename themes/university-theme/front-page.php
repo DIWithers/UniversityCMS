@@ -25,7 +25,13 @@
         ?>
             <div class="event-summary">
               <a class="event-summary__date t-center" href="#">
-                <span class="event-summary__month">Mar</span>
+                <span class="event-summary__month">
+                  <?php 
+                    $rawDate = get_field('event_date', false, false);
+                    $eventDate = new DateTime($rawDate);
+                    echo $eventDate->format('M');
+                  ?>
+                </span>
                 <span class="event-summary__day">25</span>  
               </a>
               <div class="event-summary__content">
