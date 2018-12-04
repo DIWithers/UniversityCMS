@@ -12,7 +12,8 @@
             ),
             'rewrite' => array('slug' => 'events'),
             'menu_icon' => 'dashicons-calendar',
-            'has_archive' => true
+            'has_archive' => true,
+            'supports' => array('title', 'editor', 'excerpt')
         ));
     }
     add_action('init', 'add_custom_post_types');
