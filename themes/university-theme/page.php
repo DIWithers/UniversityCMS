@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<!-- Individual Page -->
+<!-- Default Individual Page -->
 <?php
     while(have_posts()) {
         the_post(); ?>
