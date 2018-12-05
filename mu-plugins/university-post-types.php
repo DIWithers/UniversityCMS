@@ -15,6 +15,21 @@
             'has_archive' => true,
             'supports' => array('title', 'editor', 'excerpt')
         ));
+
+        register_post_type('program', array(
+            'public' => true,
+            'labels' => array(
+                'name' => 'Programs',
+                'singular_name' => 'Program',
+                'add_new_item' => 'Add New Program',
+                'edit_item' => 'Edit Program',
+                'all_items' => 'All Programs'
+            ),
+            'rewrite' => array('slug' => 'programs'),
+            'menu_icon' => 'dashicons-awards',
+            'has_archive' => true,
+            'supports' => array('title', 'editor')
+        ));
     }
     add_action('init', 'add_custom_post_types');
 ?>
