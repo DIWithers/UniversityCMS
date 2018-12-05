@@ -15,6 +15,11 @@
         register_nav_menu('footerLocationTwo', 'Footer Location Two');
     }
     function adjust_queries($query) {
+        if (!is_admin() AND is_post_type_archive('program') AND $query->is_main_query()) {
+            $query->set('posts_per_page', '-1');
+            $query->set('orderby', 'title');
+            $query->set('order', 'ASC');
+        }
         // not admin screen, only for event archives, do not manipulate custom queries
         if (!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()) {
             $today = date('Ymd');
