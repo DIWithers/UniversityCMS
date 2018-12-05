@@ -1,4 +1,3 @@
-<!-- Note: Hit Save in Settings -> Permalink if Page Not Found to update  -->
 <?php 
     function add_custom_post_types() {
         register_post_type('event', array(
