@@ -46,6 +46,13 @@
     add_action('after_setup_theme','manage_display_features');
     add_action('pre_get_posts', 'adjust_queries');
 
+    function universityMapKey($api) {
+      $api['key'] = GOOGLE_MAPS_API_KEY;
+      return $api;
+    }
+
+    add_filter('acf/fields/google_map/api', 'universityMapKey');
+
     function pageBanner($args = NULL) {
       if (!$args['title']) {
           $args['title'] = get_the_title(); //WP Page Title as default
