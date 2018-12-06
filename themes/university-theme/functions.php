@@ -8,6 +8,8 @@
     function manage_display_features() {
         add_theme_support('title-tag'); //wp handles header title
         add_theme_support('post-thumbnails'); // add featured image widget on admin screen
+        add_image_size('professorLandscape', 400, 260, false); 
+        add_image_size('professorPortrait', 480, 650, false);
         add_WP_admin_menu_display_locations();
     }
     function add_WP_admin_menu_display_locations() {
