@@ -1,5 +1,20 @@
 <?php 
     function add_custom_post_types() {
+        register_post_type('campus', array(
+            'public' => true,
+            'labels' => array(
+                'name' => 'Campuses',
+                'singular_name' => 'Campus',
+                'add_new_item' => 'Add New Campus',
+                'edit_item' => 'Edit Campus',
+                'all_items' => 'All Campuses'
+            ),
+            'rewrite' => array('slug' => 'campuses'),
+            'menu_icon' => 'dashicons-location-alt',
+            'has_archive' => true,
+            'supports' => array('title', 'editor', 'excerpt')
+        ));
+
         register_post_type('event', array(
             'public' => true,
             'labels' => array(
