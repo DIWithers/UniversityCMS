@@ -1,17 +1,12 @@
 <!-- File name is important; this edits the archive settings for the custom post type of 'event' -->
 <!-- WP archive page (i.e. when you click on an author or category link) -->
-<?php get_header(); ?>
-
-<div class="page-banner">
-  <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/ocean.jpg')?>);"></div>
-    <div class="page-banner__content container container--narrow">
-      <h1 class="page-banner__title">All Events</h1>
-      <div class="page-banner__intro">
-          <p>See what's going on</p>
-      </div>
-    </div>  
-  </div>
-</div>
+<?php 
+  get_header();
+  pageBanner(array(
+  'title' => 'All Events',
+  'subtitle' => "See what's going on.",
+  )); 
+?>
 <div class="container container--narrow page-section">
   <?php while(have_posts()) { the_post(); ?>
         <div class="event-summary">
