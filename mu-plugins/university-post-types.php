@@ -29,6 +29,19 @@
             'has_archive' => true,
             'supports' => array('title', 'editor')
         ));
+
+        register_post_type('professor', array(
+            'public' => true,
+            'labels' => array(
+                'name' => 'Professors',
+                'singular_name' => 'Professor',
+                'add_new_item' => 'Add New Professor',
+                'edit_item' => 'Edit Professor',
+                'all_items' => 'All Professors'
+            ),
+            'menu_icon' => 'dashicons-welcome-learn-more',
+            'supports' => array('title', 'editor')
+        ));
     }
     add_action('init', 'add_custom_post_types');
 ?>
