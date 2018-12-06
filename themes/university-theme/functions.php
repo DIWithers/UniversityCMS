@@ -7,6 +7,7 @@
     }
     function manage_display_features() {
         add_theme_support('title-tag'); //wp handles header title
+        add_theme_support('post-thumbnails'); // add featured image widget on admin screen
         add_WP_admin_menu_display_locations();
     }
     function add_WP_admin_menu_display_locations() {

@@ -40,7 +40,7 @@
                 'all_items' => 'All Professors'
             ),
             'menu_icon' => 'dashicons-welcome-learn-more',
-            'supports' => array('title', 'editor')
+            'supports' => array('title', 'editor', 'thumbnail')
         ));
     }
     add_action('init', 'add_custom_post_types');
