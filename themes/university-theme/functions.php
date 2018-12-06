@@ -10,6 +10,7 @@
         add_theme_support('post-thumbnails'); // add featured image widget on admin screen
         add_image_size('professorLandscape', 400, 260, true); 
         add_image_size('professorPortrait', 480, 650, true);
+        add_image_size('pageBanner', 1500, 350, true);
         add_WP_admin_menu_display_locations();
     }
     function add_WP_admin_menu_display_locations() {
