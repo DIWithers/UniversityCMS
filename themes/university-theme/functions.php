@@ -46,7 +46,7 @@
     add_action('after_setup_theme','manage_display_features');
     add_action('pre_get_posts', 'adjust_queries');
 
-    function pageBanner($args) {
+    function pageBanner($args = NULL) {
       if (!$args['title']) {
           $args['title'] = get_the_title(); //WP Page Title as default
       }
