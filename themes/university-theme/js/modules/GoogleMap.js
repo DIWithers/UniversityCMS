@@ -1,3 +1,5 @@
+// Reference https://www.advancedcustomfields.com/resources/google-map/
+
 import $ from 'jquery';
 
 class GMap {
