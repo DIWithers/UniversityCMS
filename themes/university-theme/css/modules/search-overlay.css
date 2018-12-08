@@ -3,10 +3,10 @@
   overflow-x: hidden;
   z-index: 110;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
   background-color: rgba(255, 255, 255, .96);
   visibility: hidden;
   opacity: 0;
@@ -38,7 +38,7 @@
   &__icon {
     margin-right: 10px;
     font-size: 1.8rem;
-    color: $darkOrange;
+    color: $mainBlue;
     @mixin atMedium {
       font-size: 2.5rem;
     }
@@ -63,19 +63,19 @@
     position: absolute;
     top: 13px;
     right: 16px;
-    font-size: 2.1rem;
+    font-size: 2rem;
     cursor: pointer;
     transition: all .3s;
     background-color: #FFF;
-    color: $darkOrange;
+    color: $mainBlue;
     line-height: .7;
     @mixin atSmall {
       top: 18px;
-      font-size: 2.1rem;
+      font-size: 2rem;
     }
     @mixin atMedium {
       top: 26px;
-      font-size: 2.8rem;
+      font-size: 2rem;
     }
   }
 
