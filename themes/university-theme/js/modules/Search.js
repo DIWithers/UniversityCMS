@@ -6,22 +6,34 @@ class Search {
         this.closeSearch = $(".search-overlay__close");
         this.searchOverlay = $(".search-overlay");
         this.searchField = $("#search-term");
+        this.resultsSection = $("#search-over__results");
         this.events();
         this.overlayIsOpen = false;
+        this.spinnerVisible = false;
+        this.previousValue;
         this.typingTimer;
     }
     events() {
         this.openSearch.on('click', this.openOverlay.bind(this));
         this.closeSearch.on('click', this.closeOverlay.bind(this));
         $(document).on('keydown', this.keyPressDispatcher.bind(this));
-        this.searchField.on('keydown', this.typingLogic.bind(this));
+        this.searchField.on('keyup', this.typingLogic.bind(this));
     }
     typingLogic() {
-        clearTimeout(this.typingTimer);
-        this.typingTimer = setTimeout(() => {
-        }, 2000);
+        if (this.searchField.val() !== this.previousValue) {
+            clearTimeout(this.typingTimer);
+            if (!this.spinnerVisible) {
+                this.resultsSection.html('<div class="spinner-loader"></div>');
+                this.spinnerVisible = true;
+            }
+            this.typingTimer = setTimeout(this.getResults.bind(this), 2000);
+        }
+        this.previousValue = this.searchField.val();
     }
-
+    getResults() {
+        this.resultsSection.html("Search results........");
+        this.spinnerVisible = false;
+    }
     keyPressDispatcher(event) {
         if (event.keyCode == 83 && !this.overlayIsOpen) { // S Key
             this.openOverlay();
