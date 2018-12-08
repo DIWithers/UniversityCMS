@@ -21,27 +21,27 @@
         register_nav_menu('footerLocationTwo', 'Footer Location Two');
     }
     function adjust_queries($query) {
-        if (!is_admin() AND is_post_type_archive('program') AND $query->is_main_query()) {
-            $query->set('posts_per_page', '-1');
-            $query->set('orderby', 'title');
-            $query->set('order', 'ASC');
-        }
-        // not admin screen, only for event archives, do not manipulate custom queries
-        if (!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()) {
-            $today = date('Ymd');
-            $query->set('posts_per_page', '10');
-            $query->set('meta_key', 'event_date');
-            $query->set('orderby', 'meta_value_num');
-            $query->set('order', 'ASC');
-            $query->set('meta_query', array(
-                array(
-                  'key' => 'event_date',
-                  'compare' => '>=',
-                  'value' => $today, 
-                  'type' => 'numeric'
-                )
-            ));
-        }
+      if (!is_admin() AND is_post_type_archive('program') AND $query->is_main_query()) {
+          $query->set('posts_per_page', '-1');
+          $query->set('orderby', 'title');
+          $query->set('order', 'ASC');
+      }
+      // not admin screen, only for event archives, do not manipulate custom queries
+      if (!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()) {
+        $today = date('Ymd');
+        $query->set('posts_per_page', '10');
+        $query->set('meta_key', 'event_date');
+        $query->set('orderby', 'meta_value_num');
+        $query->set('order', 'ASC');
+        $query->set('meta_query', array(
+          array(
+            'key' => 'event_date',
+            'compare' => '>=',
+            'value' => $today, 
+            'type' => 'numeric'
+          )
+        ));
+      }
     }
 
     add_action('wp_enqueue_scripts','load_scripts_and_styles');
