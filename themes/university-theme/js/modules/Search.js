@@ -37,8 +37,10 @@ class Search {
         this.previousValue = this.searchField.val();
     }
     getResults() {
-        this.resultsSection.html("Search results........");
-        this.spinnerVisible = false;
+        $.getJSON('http://localhost:3000/wp-json/wp/v2/posts?search=' + this.searchField.val(), function (posts) {
+            console.log(posts[0].title.rendered);
+        })
+        // this.spinnerVisible = false;
     }
     keyPressDispatcher(event) {
         if (event.keyCode == 83 && !this.overlayIsOpen && !$('input, textarea').is(':focus')) { // S Key if no other field is active
