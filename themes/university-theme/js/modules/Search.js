@@ -37,7 +37,7 @@ class Search {
         this.previousValue = this.searchField.val();
     }
     getResults() {
-        $.getJSON('http://brooklyn-conservatory-of-comtemporary-music.local/wp-json/wp/v2/posts?search=' + this.searchField.val(), posts => {
+        $.getJSON(mainData.root_url + '/wp-json/wp/v2/posts?search=' + this.searchField.val(), posts => {
         this.resultsSection.html(`
                 <h2>General Information</h2>
                 ${posts.length ? '<ul class="link-list min-list">' :'<p> No results found.</p>' }
@@ -49,6 +49,7 @@ class Search {
                 ).join(' ')}
                 ${posts.length ? '</ul>' :'' }
             `);
+        this.spinnerVisible = false;
         });
     }
     keyPressDispatcher(event) {
