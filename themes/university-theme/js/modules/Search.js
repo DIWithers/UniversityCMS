@@ -53,14 +53,29 @@ class Search {
                     </div>
                     <div class="one-third">
                         <h2 class="search-overlay__section-title">Programs</h2>
+                        ${results.programs.length ? '<ul class="link-list min-list">' :`<p> No results found. <a href="${mainData.root_url}/programs">View all programs</a></p>` }
+                        ${results.programs.map(result => 
+                            `<li>
+                                <a href="${result.permalink}">${result.title}</a>
+                            </li>`
+                        ).join(' ')}
+                        ${results.programs.length ? '</ul>' :'' }
                         <h2 class="search-overlay__section-title">Professors</h2>
                     </div>
                     <div class="one-third">
                         <h2 class="search-overlay__section-title">Campuses</h2>
+                        ${results.campuses.length ? '<ul class="link-list min-list">' :`<p> No results found. <a href="${mainData.root_url}/campuses">View all campuses</a></p>` }
+                        ${results.campuses.map(result => 
+                            `<li>
+                                <a href="${result.permalink}">${result.title}</a>
+                            </li>`
+                        ).join(' ')}
+                        ${results.campuses.length ? '</ul>' :'' }
                         <h2 class="search-overlay__section-title">Events</h2>
                     </div>
                 </div>
             `);
+            this.spinnerVisible = false;
         });
     }
     keyPressDispatcher(event) {
