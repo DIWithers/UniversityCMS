@@ -27,7 +27,7 @@ class Search {
                     this.resultsSection.html('<div class="spinner-loader"></div>');
                     this.spinnerVisible = true;
                 }
-                this.typingTimer = setTimeout(this.getResults.bind(this), 2000);
+                this.typingTimer = setTimeout(this.getResults.bind(this), 1000);
             }
             else {
                 this.resultsSection.html('');
@@ -37,10 +37,19 @@ class Search {
         this.previousValue = this.searchField.val();
     }
     getResults() {
-        $.getJSON('http://localhost:3000/wp-json/wp/v2/posts?search=' + this.searchField.val(), function (posts) {
-            console.log(posts[0].title.rendered);
-        })
-        // this.spinnerVisible = false;
+        $.getJSON('http://brooklyn-conservatory-of-comtemporary-music.local/wp-json/wp/v2/posts?search=' + this.searchField.val(), posts => {
+        this.resultsSection.html(`
+                <h2>General Information</h2>
+                ${posts.length ? '<ul class="link-list min-list">' :'<p> No results found.</p>' }
+                
+                ${posts.map(post => 
+                    `<li>
+                        <a href="${post.link}">${post.title.rendered}</a>
+                    </li>`
+                ).join(' ')}
+                ${posts.length ? '</ul>' :'' }
+            `);
+        });
     }
     keyPressDispatcher(event) {
         if (event.keyCode == 83 && !this.overlayIsOpen && !$('input, textarea').is(':focus')) { // S Key if no other field is active
