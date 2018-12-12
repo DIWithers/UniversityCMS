@@ -38,20 +38,26 @@ class Search {
         this.previousValue = this.searchField.val();
     }
     getResults() {
-        $.getJSON(mainData.root_url + '/wp-json/wp/v2/posts?search=' + this.searchField.val(), posts => {
-        this.resultsSection.html(`
+        $.when(
+            $.getJSON(mainData.root_url + '/wp-json/wp/v2/posts?search=' + this.searchField.val()),
+            $.getJSON(mainData.root_url + '/wp-json/wp/v2/pages?search=' + this.searchField.val())
+        )
+        .then((posts, pages) => {
+            let combinedResults = posts[0].concat(pages[0]);
+            this.resultsSection.html(`
                 <h2>General Information</h2>
-                ${posts.length ? '<ul class="link-list min-list">' :'<p> No results found.</p>' }
-                
-                ${posts.map(post => 
+                ${combinedResults.length ? '<ul class="link-list min-list">' :'<p> No results found.</p>' }
+                ${combinedResults.map(result => 
                     `<li>
-                        <a href="${post.link}">${post.title.rendered}</a>
+                        <a href="${result.link}">${result.title.rendered}</a>
                     </li>`
                 ).join(' ')}
-                ${posts.length ? '</ul>' :'' }
+                ${combinedResults.length ? '</ul>' :'' }
             `);
-        this.spinnerVisible = false;
-        });
+            this.spinnerVisible = false;
+        }, () => {
+            this.resultsSection.html('<p> Unexpected error, please try again.</p>');
+        } );
     }
     keyPressDispatcher(event) {
         if (event.keyCode == 83 && !this.overlayIsOpen && !$('input, textarea').is(':focus')) { // S Key if no other field is active
@@ -66,6 +72,7 @@ class Search {
     openOverlay() {
         this.searchOverlay.addClass('search-overlay--active');
         $("body").addClass("body-no-scroll");
+        this.searchField.val('');
         setTimeout(() => this.searchField.focus(), 301);
         this.overlayIsOpen = true;
     }
