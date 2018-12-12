@@ -50,9 +50,16 @@
       }
     }
 
+    function custom_REST() { //access WP PHP methods for JSON use
+      register_rest_field('post', 'authorName', array(
+        'get_callback' => function() {return get_the_author();}
+      ));
+    }
+
     add_action('wp_enqueue_scripts','load_scripts_and_styles');
     add_action('after_setup_theme','manage_display_features');
     add_action('pre_get_posts', 'adjust_queries');
+    add_action('rest_api_init','custom_REST');
 
     function universityMapKey($api) {
       $api['key'] = GOOGLE_MAPS_API_KEY;

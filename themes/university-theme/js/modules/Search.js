@@ -49,7 +49,7 @@ class Search {
                 ${combinedResults.length ? '<ul class="link-list min-list">' :'<p> No results found.</p>' }
                 ${combinedResults.map(result => 
                     `<li>
-                        <a href="${result.link}">${result.title.rendered}</a>
+                        <a href="${result.link}">${result.title.rendered}</a> ${result.type == 'post' ? `by ${result.authorName}` : ''}
                     </li>`
                 ).join(' ')}
                 ${combinedResults.length ? '</ul>' :'' }
