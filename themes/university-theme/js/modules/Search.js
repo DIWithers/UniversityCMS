@@ -28,7 +28,7 @@ class Search {
                     this.resultsSection.html('<div class="spinner-loader"></div>');
                     this.spinnerVisible = true;
                 }
-                this.typingTimer = setTimeout(this.getResults.bind(this), 1000);
+                this.typingTimer = setTimeout(this.getResults.bind(this), 750);
             }
             else {
                 this.resultsSection.html('');
@@ -66,10 +66,13 @@ class Search {
     openOverlay() {
         this.searchOverlay.addClass('search-overlay--active');
         $("body").addClass("body-no-scroll");
+        this.searchField.focus();
+        this.overlayIsOpen = true;
     }
     closeOverlay() {
         this.searchOverlay.removeClass('search-overlay--active');
         $("body").removeClass("body-no-scroll");
+        this.overlayIsOpen = false;
     }
     addSearchHtml() {
         $("body").append(`
