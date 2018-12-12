@@ -61,6 +61,18 @@ class Search {
                         ).join(' ')}
                         ${results.programs.length ? '</ul>' :'' }
                         <h2 class="search-overlay__section-title">Professors</h2>
+                        ${results.professors.length ? '<ul class="professor-cards">' :`<p> No results found. </p>` }
+                        ${results.professors.map(result => 
+                            `
+                                <li class="professor-card__list-item">
+                                    <a class="professor-card" href="${result.permalink}">
+                                        <img class="professor-card__image" src="${result.image}">
+                                        <span class="professor-card__name">${result.title}</span>
+                                    </a>
+                                </li>
+                            `
+                        ).join(' ')}
+                        ${results.professors.length ? '</ul>' :'' }
                     </div>
                     <div class="one-third">
                         <h2 class="search-overlay__section-title">Campuses</h2>

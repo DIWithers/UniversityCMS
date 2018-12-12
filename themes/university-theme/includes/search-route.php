@@ -9,7 +9,8 @@
     function getSearchResults($data) {
         $query = new WP_Query(array(
             'post_type' => array('post', 'page', 'professor', 'program', 'campus', 'event'),
-            's' => sanitize_text_field($data['keyword'])
+            's' => sanitize_text_field($data['keyword']),
+            'posts_per_page' => -1
         ));
         $results=array(
             'generalInfo' => array(),
@@ -33,7 +34,8 @@
             if (get_post_type() == 'professor') {
                 array_push($results['professors'], array(
                     'title' => get_the_title(),
-                    'permalink' => get_the_permalink()
+                    'permalink' => get_the_permalink(),
+                    'image' => get_the_post_thumbnail_url(0, 'professorLandscape')
                 ));
             }
             if (get_post_type() == 'program') {
