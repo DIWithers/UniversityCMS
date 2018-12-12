@@ -66,7 +66,7 @@ class Search {
     openOverlay() {
         this.searchOverlay.addClass('search-overlay--active');
         $("body").addClass("body-no-scroll");
-        this.searchField.focus();
+        setTimeout(() => this.searchField.focus(), 301);
         this.overlayIsOpen = true;
     }
     closeOverlay() {
