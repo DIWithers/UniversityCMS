@@ -124,6 +124,7 @@ class Search {
         this.searchField.val('');
         setTimeout(() => this.searchField.focus(), 301);
         this.overlayIsOpen = true;
+        return false; //prevent default behavior of link elements
     }
     closeOverlay() {
         this.searchOverlay.removeClass('search-overlay--active');
