@@ -39,6 +39,15 @@
                 ));
             }
             if (get_post_type() == 'program') {
+                $relatedCampuses = get_field('related_campus');
+                if($relatedCampuses) {
+                    foreach($relatedCampuses as $campus) {
+                        array_push($results['campuses'], array(
+                            'title' => get_the_title($campus),
+                            'permalink' => get_the_permalink($campus)
+                        ));
+                    }
+                }
                 array_push($results['programs'], array(
                     'title' => get_the_title(),
                     'permalink' => get_the_permalink(),
@@ -111,7 +120,8 @@
                 }
                 //remove dups and keys
                 $results['professors'] = array_values(array_unique($results['professors'], SORT_REGULAR)); 
-                $results['events'] = array_values(array_unique($results['events'], SORT_REGULAR)); 
+                $results['events'] = array_values(array_unique($results['events'], SORT_REGULAR));
+                $results['campuses'] = array_values(array_unique($results['campuses'], SORT_REGULAR));  
             }
         }
         return $results;
