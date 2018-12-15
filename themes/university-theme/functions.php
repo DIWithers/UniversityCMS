@@ -1,7 +1,7 @@
 <?php 
 
     require get_theme_file_path('/includes/search-route.php');
-    
+
     function load_scripts_and_styles() {
         $googleMapsUrl = '//maps.googleapis.com/maps/api/js?key=' . GOOGLE_MAPS_API_KEY;
         wp_enqueue_script('google-map', $googleMapsUrl, NULL, microtime(), true);
@@ -50,6 +50,9 @@
             'type' => 'numeric'
           )
         ));
+      }
+      if (!is_admin() AND $query->is_main_query()) {
+        $query->set('posts_per_page', '10');
       }
     }
 

@@ -1,4 +1,4 @@
-<div class="event-summary">
+<div class="event-summary post-item">
     <a class="event-summary__date t-center" href="#">
         <span class="event-summary__month">
             <?php 
