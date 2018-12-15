@@ -4,8 +4,7 @@
     while(have_posts()) {
         the_post();
         pageBanner(array(
-            'title' => 'About Us',
-            'subtitle' => "We've been around a long time.",
+            'title' => the_title()
         ));
         ?>
         <div class="container container--narrow page-section">
