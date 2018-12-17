@@ -28,8 +28,8 @@
             'menu_icon' => 'dashicons-calendar',
             'has_archive' => true,
             'supports' => array('title', 'editor', 'excerpt'),
-            // 'capability_type' => 'event',
-            // 'map_meta_cap' => true
+            'capability_type' => 'event',
+            'map_meta_cap' => true
         ));
 
         register_post_type('program', array(
