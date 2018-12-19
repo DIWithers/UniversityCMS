@@ -12,7 +12,9 @@
             'rewrite' => array('slug' => 'campuses'),
             'menu_icon' => 'dashicons-location-alt',
             'has_archive' => true,
-            'supports' => array('title', 'editor', 'excerpt')
+            'supports' => array('title', 'editor', 'excerpt'),
+            'capability_type' => 'campus',
+            'map_meta_cap' => true
         ));
 
         register_post_type('event', array(
@@ -27,7 +29,9 @@
             'rewrite' => array('slug' => 'events'),
             'menu_icon' => 'dashicons-calendar',
             'has_archive' => true,
-            'supports' => array('title', 'editor', 'excerpt')
+            'supports' => array('title', 'editor', 'excerpt'),
+            'capability_type' => 'event',
+            'map_meta_cap' => true
         ));
 
         register_post_type('program', array(
@@ -42,7 +46,9 @@
             'rewrite' => array('slug' => 'programs'),
             'menu_icon' => 'dashicons-awards',
             'has_archive' => true,
-            'supports' => array('title')
+            'supports' => array('title'),
+            'capability_type' => 'program',
+            'map_meta_cap' => true
         ));
 
         register_post_type('professor', array(
