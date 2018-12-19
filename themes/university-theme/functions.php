@@ -62,10 +62,31 @@
       ));
     }
 
+    function automaticallyRedirectSubscribersToHomePage() {
+      $currentUser = wp_get_current_user();
+      $userHasSingleRole = (count($currentUser->roles) == 1);
+      $hasSubscriberRole = $currentUser->roles[0] == 'subscriber';
+      if($userHasSingleRole AND $hasSubscriberRole) {
+        wp_redirect(site_url('/'));
+        exit;
+      }
+    }
+
+    function doNotShowAdminBarForSubscribers() {
+      $currentUser = wp_get_current_user();
+      $userHasSingleRole = (count($currentUser->roles) == 1);
+      $hasSubscriberRole = $currentUser->roles[0] == 'subscriber';
+      if($userHasSingleRole AND $hasSubscriberRole) {
+        show_admin_bar(false);
+      }
+    }
+
     add_action('wp_enqueue_scripts','load_scripts_and_styles');
     add_action('after_setup_theme','manage_display_features');
     add_action('pre_get_posts', 'adjust_queries');
     add_action('rest_api_init','custom_REST');
+    add_action('admin_init', 'automaticallyRedirectSubscribersToHomePage');
+    add_action('wp_loaded', 'doNotShowAdminBarForSubscribers');
 
     function universityMapKey($api) {
       $api['key'] = GOOGLE_MAPS_API_KEY;
@@ -105,5 +126,4 @@
       </div>
       <?php 
     }
-
 ?>
