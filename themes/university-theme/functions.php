@@ -93,7 +93,12 @@
       return $api;
     }
 
+    function customizeLoginScreenUrl() {
+      return esc_url(site_url('/'));
+    }
+
     add_filter('acf/fields/google_map/api', 'universityMapKey');
+    add_filter('login_headerurl', 'customizeLoginScreenUrl');
 
     function pageBanner($args = NULL) {
       if (!$args['title']) {
