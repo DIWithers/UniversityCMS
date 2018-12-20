@@ -61,8 +61,7 @@
                 'all_items' => 'All Professors'
             ),
             'menu_icon' => 'dashicons-welcome-learn-more',
-            'supports' => array('title', 'editor', 'thumbnail'),
-            'show_in_rest' => true
+            'supports' => array('title', 'editor', 'thumbnail')
         ));
 
         register_post_type('note', array(
@@ -76,8 +75,9 @@
                 'all_items' => 'All Notes'
             ),
             'menu_icon' => 'dashicons-welcome-write-blog',
-            'supports' => array('title', 'editor'),
-            'show_in_rest' => true
+            'supports' => array('title', 'editor', 'author'),
+            'capability_type' => 'note',
+            'map_meta_cap' => true
         ));
     }
     add_action('init', 'add_custom_post_types');
