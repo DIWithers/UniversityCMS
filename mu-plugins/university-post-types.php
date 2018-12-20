@@ -61,7 +61,9 @@
                 'all_items' => 'All Professors'
             ),
             'menu_icon' => 'dashicons-welcome-learn-more',
-            'supports' => array('title', 'editor', 'thumbnail')
+            'supports' => array('title', 'editor', 'thumbnail'),
+            'show_in_rest' => true
+        ));
 
         register_post_type('note', array(
             'public' => false,
@@ -75,6 +77,7 @@
             ),
             'menu_icon' => 'dashicons-welcome-write-blog',
             'supports' => array('title', 'editor'),
+            'show_in_rest' => true
         ));
     }
     add_action('init', 'add_custom_post_types');
