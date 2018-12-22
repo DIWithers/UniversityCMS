@@ -77,7 +77,8 @@
             'menu_icon' => 'dashicons-welcome-write-blog',
             'supports' => array('title', 'editor', 'author'),
             'capability_type' => 'note',
-            'map_meta_cap' => true
+            'map_meta_cap' => true,
+            'show_in_rest' => true,
         ));
     }
     add_action('init', 'add_custom_post_types');
