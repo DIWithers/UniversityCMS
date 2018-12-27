@@ -61,6 +61,9 @@
       register_rest_field('post', 'authorName', array(
         'get_callback' => function() {return get_the_author();}
       ));
+      register_rest_field('note', 'userNoteCount', array(
+        'get_callback' => function() {return count_user_posts(get_current_user_id(), 'note');}
+      ));
     }
 
     function automaticallyRedirectSubscribersToHomePage() {
@@ -108,9 +111,12 @@
       return get_bloginfo('name');
     }
 
-    function makeNotePrivate($data) {
+    function makeNotePrivateAndLimited($data, $postarr) {
       if ($data['post_type'] == 'note') {
         $data = sanitize($data);
+        if (count_user_posts(get_current_user_id(), 'note') >= USER_NOTE_LIMIT AND !$postarr['ID']) {
+          die("You have reached your note limit.");
+        }
       }
 
       if ($data['post_type'] == 'note' AND $data['post_status'] != "trash") {
@@ -127,7 +133,7 @@
     add_filter('acf/fields/google_map/api', 'universityMapKey');
     add_filter('login_headerurl', 'customizeLoginScreenUrl');
     add_filter('login_headertitle', 'customizeLoginTitle');
-    add_filter('wp_insert_post_data', 'makeNotePrivate');
+    add_filter('wp_insert_post_data', 'makeNotePrivateAndLimited', 10, 2); //last two args are 'priority' and 'param amount'
 
     function pageBanner($args = NULL) {
       if (!$args['title']) {

@@ -13,6 +13,7 @@ class MyNotes {
     }
     deleteNote(event) {
         var note = $(event.target).parents("li");
+        var userNoteLimit = 5; //also PHP global variable
         $.ajax({
             beforeSend: (xhr) => xhr.setRequestHeader('X-WP-Nonce', mainData.nonce),
             url: mainData.root_url + '/wp-json/wp/v2/note/' + note.data('id'),
@@ -20,6 +21,9 @@ class MyNotes {
             success: (response) => {
                 note.slideUp();
                 console.log("Success: ", response);
+                if(response.userNoteCount <= userNoteLimit) {
+                    $(".note-limit-message").removeClass("active");
+                }
             },
             error: (response) => {
                 console.log("Error: ", response)
@@ -94,6 +98,9 @@ class MyNotes {
                 console.log("Success: ", response);
             },
             error: (response) => {
+                if (response.responseText == "You have reached your note limit.") {
+                    $(".note-limit-message").addClass("active");
+                }
                 console.log("Error: ", response)
             }
         })
