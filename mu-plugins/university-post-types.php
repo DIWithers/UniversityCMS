@@ -80,6 +80,20 @@
             'map_meta_cap' => true,
             'show_in_rest' => true,
         ));
+
+        register_post_type('like', array(
+            'public' => false,
+            'show_ui' => true,
+            'labels' => array(
+                'name' => 'Likes',
+                'singular_name' => 'Like',
+                'add_new_item' => 'Add New Like',
+                'edit_item' => 'Edit Like',
+                'all_items' => 'All Likes'
+            ),
+            'menu_icon' => 'dashicons-heart',
+            'supports' => array('title'),
+        ));
     }
     add_action('init', 'add_custom_post_types');
 ?>
