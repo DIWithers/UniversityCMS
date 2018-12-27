@@ -109,9 +109,18 @@
     }
 
     function makeNotePrivate($data) {
+      if ($data['post_type'] == 'note') {
+        $data = sanitize($data);
+      }
+
       if ($data['post_type'] == 'note' AND $data['post_status'] != "trash") {
         $data['post_status'] = "private";
       }
+      return $data;
+    }
+    function sanitize($data) {
+      $data['post_content'] = sanitize_textarea_field($data['post_content']);
+      $data['post_title'] = sanitize_text_field($data['post_title']);
       return $data;
     }
 
