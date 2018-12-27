@@ -8,6 +8,7 @@ class MyNotes {
     events() {
         $(".delete-note").on('click', this.deleteNote);
         $(".edit-note").on('click', this.editNote.bind(this));
+        $(".update-note").on('click', this.updateNote.bind(this));
     }
     deleteNote(event) {
         var note = $(event.target).parents("li");
@@ -39,6 +40,26 @@ class MyNotes {
         note.find('.note-title-field, .note-body-field').attr('readonly', 'readonly').removeClass("note-active-field");
         note.find(".update-note").removeClass("update-note--visible");
         note.data('state', 'cancel');
+    }
+    updateNote(event) {
+        var note = $(event.target).parents("li");
+        var updatedPost = {
+            'title': note.find(".note-title-field").val(),
+            'content': note.find('.note-body-field').val()
+        }
+        $.ajax({
+            beforeSend: (xhr) => xhr.setRequestHeader('X-WP-Nonce', mainData.nonce),
+            url: mainData.root_url + '/wp-json/wp/v2/note/' + note.data('id'),
+            type: 'POST',
+            data: updatedPost,
+            success: (response) => {
+                this.makeNoteReadOnly(note);
+                console.log("Success: ", response);
+            },
+            error: (response) => {
+                console.log("Error: ", response)
+            }
+        })
     }
 
 }
