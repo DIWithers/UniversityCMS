@@ -108,9 +108,17 @@
       return get_bloginfo('name');
     }
 
+    function makeNotePrivate($data) {
+      if ($data['post_type'] == 'note' AND $data['post_status'] != "trash") {
+        $data['post_status'] = "private";
+      }
+      return $data;
+    }
+
     add_filter('acf/fields/google_map/api', 'universityMapKey');
     add_filter('login_headerurl', 'customizeLoginScreenUrl');
     add_filter('login_headertitle', 'customizeLoginTitle');
+    add_filter('wp_insert_post_date', 'makeNotePrivate');
 
     function pageBanner($args = NULL) {
       if (!$args['title']) {
