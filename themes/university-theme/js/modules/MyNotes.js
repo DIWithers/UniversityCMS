@@ -9,6 +9,7 @@ class MyNotes {
         $(".delete-note").on('click', this.deleteNote);
         $(".edit-note").on('click', this.editNote.bind(this));
         $(".update-note").on('click', this.updateNote.bind(this));
+        $(".submit-note").on('click', this.createNote.bind(this));
     }
     deleteNote(event) {
         var note = $(event.target).parents("li");
@@ -61,6 +62,41 @@ class MyNotes {
             }
         })
     }
-
+    createNote(event) {
+        var newPost = {
+            'title': $(".new-note-title").val(),
+            'content': $(".new-note-body").val(),
+            'status': 'publish'
+        }
+        $.ajax({
+            beforeSend: (xhr) => xhr.setRequestHeader('X-WP-Nonce', mainData.nonce),
+            url: mainData.root_url + '/wp-json/wp/v2/note/',
+            type: 'POST',
+            data: newPost,
+            success: (response) => {
+                $(".new-note-title, .new-note-body").val(""); //clear text fields
+                $(`
+                    <li data-id="${response.id}">
+                        <input readonly class="note-title-field" value="${response.title.raw}" />
+                        <span class="edit-note">
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+                        </span>
+                        <span class="delete-note">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                        </span>
+                        <textarea readonly class="note-body-field">${response.content.raw}</textarea>
+                        <span class="update-note btn btn--blue btn--small">
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i> Save
+                        </span>
+                    </li>
+                `)
+                .prependTo("#my-notes").hide().slideDown();
+                console.log("Success: ", response);
+            },
+            error: (response) => {
+                console.log("Error: ", response)
+            }
+        })
+    }
 }
 export default MyNotes;
