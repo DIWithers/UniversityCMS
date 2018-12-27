@@ -1090,6 +1090,7 @@ body.login {
 
 .update-note--visible {
   visibility: visible;
+  margin-top: 10px;
 }
 
 .note-title-field {
