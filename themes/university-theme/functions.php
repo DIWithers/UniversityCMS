@@ -118,7 +118,7 @@
     add_filter('acf/fields/google_map/api', 'universityMapKey');
     add_filter('login_headerurl', 'customizeLoginScreenUrl');
     add_filter('login_headertitle', 'customizeLoginTitle');
-    add_filter('wp_insert_post_date', 'makeNotePrivate');
+    add_filter('wp_insert_post_data', 'makeNotePrivate');
 
     function pageBanner($args = NULL) {
       if (!$args['title']) {
