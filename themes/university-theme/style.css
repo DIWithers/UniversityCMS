@@ -913,6 +913,19 @@ p, li {
   opacity: 0;
 }
 
+.like-box-message {
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s ease-out;
+  color: #c32929;
+  font-weight: bold;
+}
+
+.like-box-message.active {
+  visibility: visible;
+  opacity: 1;
+}
+
 /* Customize Login Screen */
 
 body.login .button-primary {

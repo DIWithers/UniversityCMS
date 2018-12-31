@@ -23,21 +23,24 @@
                                 )
                             ));
                             $likeExists = "no";
-                            $likeExistsQuery = new WP_Query(array(
-                                'author' => get_current_user_id(),
-                                'post_type' => 'like',
-                                'meta_query' => array(
-                                    array(
-                                        'key' => 'liked_professor_id',
-                                        'compare' => '=',
-                                        'value' => get_the_ID()
+                            if (is_user_logged_in()) {
+                                $likeExistsQuery = new WP_Query(array(
+                                    'author' => get_current_user_id(),
+                                    'post_type' => 'like',
+                                    'meta_query' => array(
+                                        array(
+                                            'key' => 'liked_professor_id',
+                                            'compare' => '=',
+                                            'value' => get_the_ID()
+                                        )
                                     )
-                                )
-                            ));
-                            if ($likeExistsQuery->found_posts) {
-                                $likeExists = "yes";
+                                ));
+                                if ($likeExistsQuery->found_posts) {
+                                    $likeExists = "yes";
+                                }                                
                             }
                         ?>
+                        <span class="like-box-message">You must be logged in to create a Like.</span>
                         <span class="like-box" data-exists="<?php echo $likeExists; ?>" data-professor="<?php the_ID(); ?>">
                             <i class="fa fa-heart-o" aria-hidden="true"></i>
                             <i class="fa fa-heart" aria-hidden="true"></i>

@@ -29,6 +29,9 @@ class Like {
             },
             error: (response) => {
                 console.log(response);
+                if (response.responseText == 'You must be logged in to create a Like.') {
+                    $(".like-box-message").addClass("active");
+                }
             }
         });
     }
