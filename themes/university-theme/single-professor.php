@@ -41,7 +41,7 @@
                             }
                         ?>
                         <span class="like-box-message">You must be logged in to create a Like.</span>
-                        <span class="like-box" data-exists="<?php echo $likeExists; ?>" data-professor="<?php the_ID(); ?>">
+                        <span class="like-box" data-like="<?php echo $likeExistsQuery->posts[0]->ID; ?>" data-exists="<?php echo $likeExists; ?>" data-professor="<?php the_ID(); ?>">
                             <i class="fa fa-heart-o" aria-hidden="true"></i>
                             <i class="fa fa-heart" aria-hidden="true"></i>
                             <span class="like-count"><?php echo $likeCount->found_posts; ?></span>

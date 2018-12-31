@@ -9,7 +9,7 @@ class Like {
     }
     clickDispatcher(event) {
         var likeBox = $(event.target).closest('.like-box'); //proximity click, find closest likebox
-        if (likeBox.data('exists') == 'yes') {
+        if (likeBox.attr('data-exists') == 'yes') {
             this.deleteLike(likeBox);
         }
         else {
@@ -29,6 +29,7 @@ class Like {
                 likeCount++;
                 likeBox.find('.like-count').html(likeCount);
                 likeBox.attr('data-exists', 'yes');
+                likeBox.attr('data-like', response);
                 console.log(response);
             },
             error: (response) => {
@@ -39,11 +40,20 @@ class Like {
             }
         });
     }
-    deleteLike() {
+    deleteLike(likeBox) {
         $.ajax({
+            beforeSend: (xhr) => xhr.setRequestHeader('X-WP-Nonce', mainData.nonce),
             url: mainData.root_url + '/wp-json/university/v1/manageLike',
+            data: {
+                'like': likeBox.attr('data-like')
+            },
             type: 'DELETE',
             success: (response) => {
+                var likeCount = parseInt(likeBox.find('.like-count').html(),10);
+                likeCount--;
+                likeBox.find('.like-count').html(likeCount);
+                likeBox.attr('data-exists', 'no');
+                likeBox.attr('data-like', '');
                 console.log(response);
             },
             error: (response) => {
