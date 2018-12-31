@@ -1,6 +1,7 @@
 <?php 
 
     require get_theme_file_path('/includes/search-route.php');
+    require get_theme_file_path('/includes/like-route.php');
 
     function load_scripts_and_styles() {
         $googleMapsUrl = '//maps.googleapis.com/maps/api/js?key=' . GOOGLE_MAPS_API_KEY;
