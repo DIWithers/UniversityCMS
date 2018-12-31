@@ -18,10 +18,11 @@ class Like {
     }
     createLike(likeBox) {
         $.ajax({
+            beforeSend: (xhr) => xhr.setRequestHeader('X-WP-Nonce', mainData.nonce),
             url: mainData.root_url + '/wp-json/university/v1/manageLike',
             type: 'POST',
             data: {
-                'professorId': likeBox.data['professor']
+                'professorId': likeBox.data('professor')
             },
             success: (response) => {
                 console.log(response);
