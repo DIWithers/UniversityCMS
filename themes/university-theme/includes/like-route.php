@@ -46,6 +46,7 @@ function deleteLike($data) {
     $isMyPost = get_current_user_id() == get_post_field('post_author', $likeId);
     if ($isMyPost AND get_post_type($likeId) == 'like') {
         wp_delete_post($likeId, true);
+        return "Deletion complete.";
     }
     else {
         die ("You do not have permission to perform this operation. ");
