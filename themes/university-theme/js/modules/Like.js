@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 class Like {
     constructor() {
-
+        this.events();
     }
     events() {
         $('.like-box').on('click', this.clickDispatcher.bind(this));
