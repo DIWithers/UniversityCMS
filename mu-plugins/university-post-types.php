@@ -107,6 +107,19 @@
             'menu_icon' => 'dashicons-slides',
             'supports' => array('title'),
         ));
+
+        register_post_type('student', array(
+            'show_ui' => true,
+            'labels' => array(
+                'name' => 'Students',
+                'singular_name' => 'Student',
+                'add_new_item' => 'Add New Student',
+                'edit_item' => 'Edit Student',
+                'all_items' => 'All Students'
+            ),
+            'menu_icon' => 'dashicons-id-alt',
+            'supports' => array(''),
+        ));
     }
     add_action('init', 'add_custom_post_types');
 ?>
