@@ -94,6 +94,19 @@
             'menu_icon' => 'dashicons-heart',
             'supports' => array('title'),
         ));
+
+        register_post_type('slide', array(
+            'show_ui' => true,
+            'labels' => array(
+                'name' => 'Slides',
+                'singular_name' => 'Slide',
+                'add_new_item' => 'Add New Slide',
+                'edit_item' => 'Edit Slide',
+                'all_items' => 'All Slides'
+            ),
+            'menu_icon' => 'dashicons-slides',
+            'supports' => array('title'),
+        ));
     }
     add_action('init', 'add_custom_post_types');
 ?>
