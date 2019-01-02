@@ -60,7 +60,7 @@
                 'edit_item' => 'Edit Professor',
                 'all_items' => 'All Professors'
             ),
-            'menu_icon' => 'dashicons-welcome-learn-more',
+            'menu_icon' => 'dashicons-admin-users',
             'supports' => array('title', 'editor', 'thumbnail')
         ));
 
@@ -109,6 +109,7 @@
         ));
 
         register_post_type('student', array(
+            'public' => true,
             'show_ui' => true,
             'labels' => array(
                 'name' => 'Students',
@@ -119,6 +120,25 @@
             ),
             'menu_icon' => 'dashicons-id-alt',
             'supports' => array(''),
+            'capability_type' => 'student',
+            'map_meta_cap' => true
+        ));
+
+        register_post_type('course', array(
+            'public' => true,
+            'labels' => array(
+                'name' => 'Courses',
+                'singular_name' => 'Course',
+                'add_new_item' => 'Add New Course',
+                'edit_item' => 'Edit Course',
+                'all_items' => 'All Courses'
+            ),
+            'rewrite' => array('slug' => 'courses'),
+            'menu_icon' => 'dashicons-welcome-learn-more',
+            'has_archive' => true,
+            'supports' => array('title', 'editor'),
+            'capability_type' => 'program',
+            'map_meta_cap' => true
         ));
     }
     add_action('init', 'add_custom_post_types');
