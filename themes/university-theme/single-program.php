@@ -20,6 +20,39 @@
             </div>
             <div class="generic-content"><?php the_field('main_body_content') ?></div>
             <?php
+            wp_reset_postdata(); 
+            $relatedCourses = new WP_Query(array(
+                'posts_per_page' => -1,
+                'post_type' => 'course',
+                'orderby' => 'title',
+                'order' => 'ASC',
+                'meta_query' => array(
+                    array(
+                        'key' => 'related_programs',
+                        'compare' => 'LIKE',
+                        'value' => '"' . get_the_ID() . '"'
+                    )
+                )
+            ));
+            if ($relatedCourses->have_posts()) {
+                echo '<hr class="section-break">';
+                echo '<h2 class="headline headline--medium">' . get_the_title() . ' Courses</h2>';
+                echo '<ul class="min-list link-list">';
+                while($relatedCourses->have_posts()) {
+                    $relatedCourses->the_post();
+            ?>
+                    <li>
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_title(); ?>
+                        </a>
+                    </li>
+            <?php
+                }
+                echo '</ul>';
+            }
+            ?>
+            <?php
+                wp_reset_postdata(); 
                 $relatedProfessors = new WP_Query(array(
                     'posts_per_page' => -1,
                     'post_type' => 'professor',
@@ -94,6 +127,7 @@
                         </li>
                     <?php
                     }
+                    echo '</ul>';
                 }
             ?>
         </div>

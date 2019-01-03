@@ -133,11 +133,10 @@
                 'edit_item' => 'Edit Course',
                 'all_items' => 'All Courses'
             ),
-            'rewrite' => array('slug' => 'courses'),
             'menu_icon' => 'dashicons-welcome-learn-more',
             'has_archive' => true,
             'supports' => array('title', 'editor'),
-            'capability_type' => 'program',
+            'capability_type' => 'course',
             'map_meta_cap' => true
         ));
     }
