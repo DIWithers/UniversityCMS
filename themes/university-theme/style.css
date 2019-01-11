@@ -1174,6 +1174,26 @@ body.login {
   }
 }
 
+/* Create Student */
+.new-student {
+  background-color: #DDD;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 10px;
+}
+
+@media (max-width: 530px) {
+  .new-student {
+    width: 100%;
+  }
+}
+@media (min-width: 960) {
+  .new-student {
+    width: 45%;
+  }
+}
+
+
 /* Create Note */
 
 .create-note {
