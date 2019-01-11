@@ -131,10 +131,27 @@
       return $data;
     }
 
+    function generate_title_field( $value, $post_id, $field ) {
+      if ( get_post_type( $post_id ) == 'student' ) {
+    
+        $new_title = get_field('first_name', $post_id) . ' ' . $value;
+        $new_slug = sanitize_title( $new_title );
+    
+        // update post
+        wp_update_post( array(
+          'ID'         => $post_id,
+          'post_title' => $new_title,
+          'post_name'  => $new_slug,
+          ) );
+      }
+      return $value;
+    }
+
     add_filter('acf/fields/google_map/api', 'universityMapKey');
     add_filter('login_headerurl', 'customizeLoginScreenUrl');
     add_filter('login_headertitle', 'customizeLoginTitle');
     add_filter('wp_insert_post_data', 'makeNotePrivateAndLimited', 10, 2); //last two args are 'priority' and 'param amount'
+    add_filter( 'acf/update_value/name=last_name', 'generate_title_field', 10, 3 );
 
     function pageBanner($args = NULL) {
       if (!$args['title']) {
