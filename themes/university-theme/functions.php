@@ -149,11 +149,17 @@
       return $value;
     }
 
+    function should_show_admin_bar() { 
+      if (!current_user_can( 'manage_options')) 
+      return false; 
+    }
+    
     add_filter('acf/fields/google_map/api', 'universityMapKey');
     add_filter('login_headerurl', 'customizeLoginScreenUrl');
     add_filter('login_headertitle', 'customizeLoginTitle');
     add_filter('wp_insert_post_data', 'makeNotePrivateAndLimited', 10, 2); //last two args are 'priority' and 'param amount'
     add_filter( 'acf/update_value/name=last_name', 'generate_title_field', 10, 3 );
+    add_filter( 'show_admin_bar', 'should_show_admin_bar' );
 
     function pageBanner($args = NULL) {
       if (!$args['title']) {
