@@ -121,7 +121,8 @@
             'menu_icon' => 'dashicons-id-alt',
             'supports' => array(''),
             'capability_type' => 'student',
-            'map_meta_cap' => true
+            'map_meta_cap' => true,
+            'show_in_rest' => true,
         ));
 
         register_post_type('course', array(
