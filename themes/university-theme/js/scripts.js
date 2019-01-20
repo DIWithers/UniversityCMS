@@ -9,6 +9,8 @@ import GoogleMap from './modules/GoogleMap';
 import Search from './modules/Search';
 import MyNotes from './modules/MyNotes';
 import Like from './modules/Like';
+import Student from './modules/Student';
+
 
 // Instantiate a new object using our modules/classes
 var mobileMenu = new MobileMenu();
@@ -17,6 +19,7 @@ var googleMap = new GoogleMap();
 var search = new Search();
 var myNotes = new MyNotes();
 var like = new Like();
+var student = new Student();
 
 ///Note///
 // Bundles into scripts-bundled.js
